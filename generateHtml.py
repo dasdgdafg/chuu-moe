@@ -11,17 +11,17 @@ for root, subdirs, files in os.walk("html template"):
         else:
             pages.append(os.path.join(root, f))
 
-f = open(navbar, 'r')
+f = open(navbar, 'rb')
 navContents = f.read()
 f.close()
 
 for p in pages:
-    f = open(p, 'r')
+    f = open(p, 'rb')
     contents = f.read()
     f.close()
-    contents = contents.replace("{{ put the nav-bar here }}", navContents)
+    contents = contents.replace(b"{{ put the nav-bar here }}", navContents)
     _, base = os.path.split(p)
     newFile = os.path.join("generated html", base)
-    f = open(newFile, 'w')
+    f = open(newFile, 'wb')
     f.write(contents)
     f.close()
